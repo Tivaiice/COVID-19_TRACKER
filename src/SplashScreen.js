@@ -8,14 +8,14 @@ class Splash extends React.Component {
 
   componentDidMount() {
     setTimeout(() => {
-      this.props.navigation.navigate("Home");
+      this.props.navigation.navigate("First");
     }, 2000);
   }
 
   render() {
     return (
       <View
-        style={{ flex: 1, alignItems: "center", backgroundColor: "tomato" }}
+        style={{ flex: 1, alignItems: "center", backgroundColor: "#FFFFFF" }}
       >
         <Text>Loading</Text>
       </View>

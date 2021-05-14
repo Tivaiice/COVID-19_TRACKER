@@ -1,13 +1,13 @@
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import SplashScreen from "./SplashScreen";
-import HomeContainer from "../src/Container/HomeContainer";
-import AbountContainer from "../src/Container/AboutContainer";
+import FirstContainer from "./Container/FirstContainer";
+import TwoContainer from "./Container/TwoContainer";
 
 const SwitchNav = createSwitchNavigator(
   {
     SplashScreen,
-    Home: HomeContainer,
-    About: AbountContainer,
+    First: FirstContainer,
+    Two: TwoContainer,
   },
   {
     initialRouteName: "SplashScreen",
