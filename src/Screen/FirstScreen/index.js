@@ -1,95 +1,151 @@
 import React, { useState } from "react";
 import {
   Text,
+  Button,
   StyleSheet,
   View,
-  Button,
   ActivityIndicator,
+  SafeAreaView,
   FlatList,
-  Image,
 } from "react-native";
 
-// const data = [
-//   {
-//     albumId: 1,
-//     id: 44,
-//     thumbnailUrl: "https://via.placeholder.com/150/29fe9f",
-//     title: "neque eum provident et inventore sed ipsam dignissimos quo",
-//     url: "https://via.placeholder.com/600/29fe9f",
-//   },
-// ];
+// array.filter(name => name.includes(state)).map(value =>
 
-const First = ({ props, navigation, data, isLoading }) => {
+const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
+  const moment = require("moment");
   return (
-    <View
-      style={{
-        marginTop: 50,
-        alignItems: "center",
-        flex: 1,
-        backgroundColor: "#FFFFFF",
-      }}
-    >
-      <View style={{ flex: 1 }}>
-        <Text>HOME PAGE</Text>
-        <View style={{ flex: 1 }}>
+    <View style={styles.firstContainer}>
+      <View style={styles.styFlex1}>
+        <Text style={styles.stytxt}>COVID-19 TRACKER</Text>
+        <View style={styles.styFlex1}>
           {isLoading ? (
-            <ActivityIndicator size="large" color="#00ff00" />
+            <ActivityIndicator size="large" color="#FF0000" />
           ) : (
-            <FlatList
-              data={data}
-              keyExtractor={({ id }, index) => id}
-              renderItem={({ item, id }) => (
-                <View
-                  style={{
-                    borderColor: "#bababa",
-                    borderWidth: 0.5,
-                    height: 40,
-                    width: 300,
-                  }}
-                >
-                  <View style={{ flexDirection: "row" }}>
-                    <View
-                      style={{
-                        width: 50,
-                      }}
-                    >
-                      <Image
-                        style={{ width: 40, height: 40, borderRadius: 50 }}
-                        source={{ uri: item.url }}
-                      />
-                    </View>
-                    <View style={{ flexDirection: "column" }}>
-                      <Text
-                        style={{
-                          width: 200,
-                        }}
-                      >
-                        {item.title}
-                      </Text>
-                    </View>
-                    <View style={{ width: 50 }}>
-                      <Button
-                        title=">"
-                        color="#FF0000"
-                        onPress={() =>
-                          navigation.navigate("Two", {
-                            title: item.title,
-                            pic: item.url,
-                          })
-                        }
-                      />
-                    </View>
-                  </View>
-                </View>
-              )}
-            />
+            <View style={styles.totalContainer}>
+              <View style={styles.boxTotal}>
+                <Text>TotalConfirmed</Text>
+                <Text>{dataTotal.TotalConfirmed}</Text>
+              </View>
+              <View style={styles.boxTotal}>
+                <Text>TotalRecovered</Text>
+                <Text>{dataTotal.TotalRecovered}</Text>
+              </View>
+              <View style={styles.boxTotal}>
+                <Text>TotalDeaths</Text>
+                <Text>{dataTotal.TotalDeaths}</Text>
+              </View>
+            </View>
           )}
+        </View>
+        <View style={styles.styFlex5}>
+          <View style={styles.styFlex02}>
+            <Text style={styles.txtInfor}>
+              Infomation update on :
+              {moment(dateUpdate).format("YYYY/MM/DD HH:mm:ss")}
+            </Text>
+            <View style={styles.boxInput}>
+              <View style={{ marginLeft: 10, marginVertical: 8 }}></View>
+            </View>
+            <View style={styles.btnContainer}>
+              <Button
+                title="TotalConfirmed"
+                onPress={() => {
+                  navigation.navigate("Confirmed", {
+                    datas: datas,
+                  });
+                }}
+              />
+              <Button
+                title="TotalRecoverd"
+                onPress={() => {
+                  navigation.navigate("Recoverd", {
+                    datas: datas,
+                  });
+                }}
+              />
+              <Button
+                title="TotalDeath"
+                onPress={() => {
+                  navigation.navigate("Death", {
+                    datas: datas,
+                  });
+                }}
+              />
+            </View>
+          </View>
+          <View style={styles.styFlex1}>
+            <SafeAreaView style={{ margin: 10 }}>
+              <View>
+                <Text>awds</Text>
+              </View>
+            </SafeAreaView>
+          </View>
         </View>
       </View>
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  firstContainer: {
+    marginTop: 50,
+    flex: 1,
+    backgroundColor: "#FFFFFF",
+  },
+  stytxt: { alignSelf: "center", fontSize: 25 },
+  totalContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginTop: 10,
+  },
+  boxTotal: {
+    width: 110,
+    height: 100,
+    backgroundColor: "#fca4ac",
+    justifyContent: "space-around",
+    alignItems: "center",
+    borderRadius: 15,
+  },
+  boxList: {
+    borderWidth: 1,
+    borderColor: "#FF0000",
+    borderRadius: 5,
+    margin: 2,
+    padding: 2,
+  },
+  txtInfor: {
+    alignSelf: "flex-end",
+    fontSize: 10,
+    marginRight: 10,
+  },
+  boxInput: {
+    height: 40,
+    borderWidth: 1,
+    borderRadius: 15,
+    marginHorizontal: 20,
+  },
+  btnContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  autocomplete: {
+    alignSelf: "stretch",
+    height: 50,
+    margin: 10,
+    marginTop: 50,
+    backgroundColor: "#FFF",
+    borderColor: "lightblue",
+    borderWidth: 1,
+  },
+  styFlex1: {
+    flex: 1,
+  },
+  styFlex5: {
+    flex: 5,
+  },
+  styFlex02: {
+    flex: 0.2,
+  },
+});
 
 export default First;

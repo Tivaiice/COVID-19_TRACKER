@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Image, StyleSheet } from "react-native";
 
 class Splash extends React.Component {
   constructor(props) {
@@ -14,13 +14,25 @@ class Splash extends React.Component {
 
   render() {
     return (
-      <View
-        style={{ flex: 1, alignItems: "center", backgroundColor: "#FFFFFF" }}
-      >
-        <Text>Loading</Text>
+      <View style={styles.bgContainer}>
+        <Image
+          style={styles.pic}
+          source={require("../src/images/new-normality.png")}
+        />
+        <Text style={{ marginTop: 10 }}>COVID-19 TRACKER</Text>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  bgContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#FFFFFF",
+  },
+  pic: { width: 100, height: 100 },
+});
 
 export default Splash;

@@ -1,20 +1,33 @@
-import React from "react";
+import React, { Component } from "react";
+import { Text, View } from "react-native";
+import AutoComplete from "react-native-autocomplete";
 import First from "../../Screen/FirstScreen";
 
 class FirstContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
+      datas: [],
+      dataTotal: [],
+      suggestions: [],
+      dateUpdate: "",
       isLoading: true,
+      click: 0,
     };
   }
+  componentDidMount() {
+    this.covidApi();
+  }
 
-  async componentDidMount() {
-    await fetch("https://jsonplaceholder.typicode.com/photos")
+  async covidApi() {
+    await fetch("https://api.covid19api.com/summary")
       .then((response) => response.json())
       .then((json) => {
-        this.setState({ data: json });
+        this.setState({
+          datas: json.Countries,
+          dataTotal: json.Global,
+          dateUpdate: json.Date,
+        });
       })
       .catch((error) => console.error(error))
       .finally(() => {
@@ -23,11 +36,14 @@ class FirstContainer extends React.Component {
   }
 
   render() {
-    // console.log("Data", this.state.data);
+    // console.log("Data999", this.state.dataTotal);
+
     return (
       <First
         navigation={this.props.navigation}
-        data={this.state.data}
+        datas={this.state.datas}
+        dataTotal={this.state.dataTotal}
+        dateUpdate={this.state.dateUpdate}
         isLoading={this.state.isLoading}
       />
     );
