@@ -19,7 +19,14 @@ class Splash extends React.Component {
           style={styles.pic}
           source={require("../src/images/new-normality.png")}
         />
-        <Text style={{ marginTop: 10, color: "#FFFFFF" }}>
+        <Text
+          style={{
+            marginTop: 10,
+            color: "#FFFFFF",
+            fontWeight: "bold",
+            fontSize: 20,
+          }}
+        >
           COVID-19 TRACKER
         </Text>
       </View>

@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Text, StyleSheet, View, TouchableOpacity, Image } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Image,
+  ImageBackground,
+} from "react-native";
 import { SafeAreaView } from "react-navigation";
 
 const ShowDetail = ({ navigation, detail }) => {
@@ -18,72 +25,118 @@ const ShowDetail = ({ navigation, detail }) => {
 
   return (
     <View style={styles.bgContainer}>
-      <View style={{ flex: 1 }}>
-        <View style={{ flexDirection: "row" }}>
-          <View style={{ flex: 1, height: 55 }}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("First");
+      <ImageBackground
+        source={require("../../images/head2.png")}
+        style={styles.imageHead}
+      >
+        <View style={{ flex: 1 }}>
+          <View style={{ flexDirection: "row" }}>
+            <View style={{ flex: 1, height: 55 }}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("First");
+                }}
+              >
+                <Image
+                  style={{
+                    width: 25,
+                    height: 25,
+                    marginVertical: 20,
+                    marginLeft: 10,
+                  }}
+                  source={require("../../images/back.png")}
+                />
+              </TouchableOpacity>
+            </View>
+            <View
+              style={{
+                flex: 5,
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              <Image
-                style={{ width: 35, height: 35, marginTop: 10, marginLeft: 10 }}
-                source={require("../../images/previous.png")}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={{ flex: 8, height: 55 }}>
-            <Text
-              style={{ alignSelf: "center", fontSize: 20, marginVertical: 12 }}
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: "bold",
+                  color: "#FFFFFF",
+                }}
+              >
+                Details
+              </Text>
+            </View>
+            <View
+              style={{ flex: 1, height: 55, marginTop: 10, marginRight: 10 }}
             >
-              Deatils
-            </Text>
-          </View>
-          <View style={{ flex: 1, height: 55, marginTop: 10, marginRight: 10 }}>
-            <Image
-              style={{ width: 35, height: 35 }}
-              source={require("../../images/rehabilitation.png")}
-            />
+              <Image
+                style={{ width: 40, height: 40, marginVertical: 2 }}
+                source={require("../../images/covidd199.png")}
+              />
+            </View>
           </View>
         </View>
-      </View>
+      </ImageBackground>
       <View style={{ flex: 12 }}>
         <SafeAreaView style={{ flex: 1 }}>
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 2 }}>
             <Image
               source={randomImage}
-              style={{ width: 150, height: 150, alignSelf: "center" }}
+              style={{
+                width: 150,
+                height: 150,
+                alignSelf: "center",
+                marginTop: 50,
+              }}
             />
           </View>
           <View
             style={{
-              flex: 3,
-              alignItems: "stretch",
-              marginTop: 20,
-              marginLeft: 100,
+              flex: 4,
             }}
           >
-            <Text>Country : {detail.Country}</Text>
-            <Text>CountryCode : {detail.CountryCode}</Text>
-            <Text>
-              Date :{moment(detail.Date).format(" YYYY/MM/DD HH:mm:ss")}
-            </Text>
-            <Text>
-              NewConfirmed :{" "}
-              {detail.NewConfirmed == 0 ? "unreported" : detail.NewConfirmed}
-            </Text>
-            <Text>
-              NewDeaths :{" "}
-              {detail.NewDeaths == 0 ? "unreported" : detail.NewDeaths}
-            </Text>
-            <Text>
-              NewRecovered :{" "}
-              {detail.NewRecovered == 0 ? "unreported" : detail.NewRecovered}
-            </Text>
-            <Text>Slug : {detail.Slug}</Text>
-            <Text>TotalConfirmed : {detail.TotalConfirmed}</Text>
-            <Text>TotalDeaths : {detail.TotalDeaths}</Text>
-            <Text>TotalRecovered : {detail.TotalRecovered}</Text>
+            <View
+              style={{
+                backgroundColor: "#d7d7d7",
+                padding: 20,
+                alignSelf: "center",
+                flexDirection: "row",
+              }}
+            >
+              <View style={{ flex: 1, paddingLeft: 50 }}>
+                <Text style={styles.txtdetails}>Country </Text>
+                <Text style={styles.txtdetails}>CountryCode</Text>
+                <Text style={styles.txtdetails}>Date</Text>
+                <Text style={styles.txtdetails}>NewConfirmed</Text>
+                <Text style={styles.txtdetails}>NewDeaths</Text>
+                <Text style={styles.txtdetails}>NewRecovered</Text>
+                <Text style={styles.txtdetails}>Slug </Text>
+                <Text style={styles.txtdetails}>TotalConfirmed</Text>
+                <Text style={styles.txtdetails}>TotalDeaths </Text>
+                <Text style={styles.txtdetails}>TotalRecovered </Text>
+              </View>
+              <View style={{ flex: 1 }}>
+                <Text>{detail.Country}</Text>
+                <Text>{detail.CountryCode}</Text>
+                <Text>{moment(detail.Date).format("YYYY/MM/DD HH:mm:ss")}</Text>
+                <Text>
+                  {detail.NewConfirmed == 0
+                    ? "unreported"
+                    : detail.NewConfirmed}
+                </Text>
+                <Text>
+                  {detail.NewDeaths == 0 ? "unreported" : detail.NewDeaths}
+                </Text>
+                <Text>
+                  {detail.NewRecovered == 0
+                    ? "unreported"
+                    : detail.NewRecovered}
+                </Text>
+                <Text>{detail.Slug}</Text>
+                <Text>{detail.TotalConfirmed}</Text>
+                <Text>{detail.TotalDeaths}</Text>
+                <Text>{detail.TotalRecovered}</Text>
+              </View>
+            </View>
           </View>
         </SafeAreaView>
       </View>
@@ -103,6 +156,15 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     margin: 2,
     padding: 2,
+  },
+  imageHead: {
+    flex: 1,
+    height: 70,
+    resizeMode: "cover",
+    justifyContent: "center",
+  },
+  txtdetails: {
+    fontWeight: "bold",
   },
 });
 

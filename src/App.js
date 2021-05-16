@@ -1,8 +1,6 @@
 import React from "react";
-import { View, StyleSheet, Constants } from "react-native";
+import { View, StyleSheet } from "react-native";
 import StackNavigation from "./Navigation";
-
-const STATUSBAR_HEIGHT = Platform.OS === "ios" ? 5 : StatusBar.currentHeight;
 class App extends React.Component {
   render() {
     return (
@@ -16,8 +14,7 @@ class App extends React.Component {
 const styles = StyleSheet.create({
   statusBar: {
     flex: 1,
-    backgroundColor: "#003567",
-    height: STATUSBAR_HEIGHT,
+    backgroundColor: "#003160",
   },
 });
 export default App;

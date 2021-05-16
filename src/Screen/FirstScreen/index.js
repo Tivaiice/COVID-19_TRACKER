@@ -1,81 +1,113 @@
 import React, { useState } from "react";
 import {
   Text,
-  Button,
   StyleSheet,
   View,
   ActivityIndicator,
   SafeAreaView,
-  FlatList,
+  Image,
   ScrollView,
   TouchableOpacity,
+  ImageBackground,
+  Platform,
 } from "react-native";
 import { TextInput } from "react-native-paper";
 
 const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
   const moment = require("moment");
-
+  const image = { uri: "../../images/" };
   const [textSearch, setTextSearch] = useState("");
 
   return (
     <View style={styles.firstContainer}>
       <View style={styles.styFlex1}>
-        <View style={{ backgroundColor: "#003567" }}>
-          <Text style={styles.stytxt}>COVID-19 TRACKER</Text>
-        </View>
-        <View style={styles.styFlex1Main}>
-          {isLoading ? (
-            <View style={{ alignItems: "center", marginTop: 30 }}>
-              <ActivityIndicator size="large" color="#FF0000" />
+        <ImageBackground
+          source={require("../../images/head2.png")}
+          style={styles.imageHead}
+        >
+          <View style={{ flexDirection: "row" }}>
+            <View
+              style={{
+                flex: 1,
+                alignItems: "flex-end",
+              }}
+            >
+              <Image
+                style={{ width: 40, height: 40 }}
+                source={require("../../images/covidd199.png")}
+              />
             </View>
-          ) : (
-            <View style={styles.totalContainer}>
-              <View style={styles.boxTotal}>
-                <Text style={styles.dataTotal}>TotalConfirmed</Text>
-                <View
-                  style={{
-                    borderRadius: 5,
-                    paddingVertical: 15,
-                    paddingHorizontal: 18,
-                    backgroundColor: "#ed7d75",
-                  }}
-                >
-                  <Text style={styles.dataTotal}>
-                    {dataTotal.TotalConfirmed}
-                  </Text>
-                </View>
-              </View>
-              <View style={styles.boxTotal}>
-                <Text style={styles.dataTotal}>TotalRecovered</Text>
-                <View
-                  style={{
-                    borderRadius: 5,
-                    paddingVertical: 15,
-                    paddingHorizontal: 18,
-                    backgroundColor: "#e04e36",
-                  }}
-                >
-                  <Text style={styles.dataTotal}>
-                    {dataTotal.TotalRecovered}
-                  </Text>
-                </View>
-              </View>
-              <View style={styles.boxTotal}>
-                <Text style={styles.dataTotal}>TotalDeaths</Text>
-                <View
-                  style={{
-                    borderRadius: 5,
-                    paddingVertical: 15,
-                    paddingHorizontal: 18,
-                    backgroundColor: "#98352b",
-                  }}
-                >
-                  <Text style={styles.dataTotal}>{dataTotal.TotalDeaths}</Text>
-                </View>
-              </View>
+            <View style={{ flex: 4, alignItems: "center" }}>
+              <Text style={styles.stytxt}>COVID-19 TRACKER</Text>
             </View>
-          )}
-        </View>
+            <View
+              style={{
+                flex: 1,
+                alignItems: "flex-start",
+              }}
+            >
+              <Image
+                style={{ width: 40, height: 40 }}
+                source={require("../../images/covidd199.png")}
+              />
+            </View>
+          </View>
+          <View style={styles.styFlex1Main}>
+            {isLoading ? (
+              <View style={{ alignItems: "center", marginTop: 30 }}>
+                <ActivityIndicator size="large" color="#FF0000" />
+              </View>
+            ) : (
+              <View style={styles.totalContainer}>
+                <View style={styles.boxTotal}>
+                  <Text style={styles.dataTotal}>TotalConfirmed</Text>
+                  <View
+                    style={{
+                      borderRadius: 5,
+                      paddingVertical: 15,
+                      paddingHorizontal: 18,
+                      backgroundColor: "#ed7d75",
+                    }}
+                  >
+                    <Text style={styles.dataTotal2}>
+                      {dataTotal.TotalConfirmed}
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.boxTotal}>
+                  <Text style={styles.dataTotal}>TotalRecovered</Text>
+                  <View
+                    style={{
+                      borderRadius: 5,
+                      paddingVertical: 15,
+                      paddingHorizontal: 18,
+                      backgroundColor: "#e04e36",
+                    }}
+                  >
+                    <Text style={styles.dataTotal2}>
+                      {dataTotal.TotalRecovered}
+                    </Text>
+                  </View>
+                </View>
+                <View style={styles.boxTotal}>
+                  <Text style={styles.dataTotal}>TotalDeaths</Text>
+                  <View
+                    style={{
+                      borderRadius: 5,
+                      paddingVertical: 15,
+                      paddingHorizontal: 18,
+                      backgroundColor: "#98352b",
+                    }}
+                  >
+                    <Text style={styles.dataTotal2}>
+                      {dataTotal.TotalDeaths}
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            )}
+          </View>
+        </ImageBackground>
         <View style={styles.styFlex5}>
           <View style={styles.styFlex02}>
             <Text style={styles.txtInfor}>
@@ -188,18 +220,29 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#FFFFFF",
   },
+  imageHead: {
+    flex: 1,
+    height: 130,
+    resizeMode: "cover",
+    justifyContent: "center",
+  },
   stytxt: {
-    alignSelf: "center",
     fontSize: 25,
+    fontWeight: "bold",
     color: "#FFFFFF",
+    marginVertical: 5,
   },
   dataTotal: {
+    color: "#FFFFFF",
+    marginTop: 5,
+    marginBottom: 10,
+  },
+  dataTotal2: {
     color: "#FFFFFF",
   },
   totalContainer: {
     flexDirection: "row",
     justifyContent: "space-evenly",
-    marginTop: 10,
     paddingHorizontal: 10,
   },
   btnTotal: {
@@ -209,8 +252,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   boxTotal: {
-    width: 110,
-    height: 100,
     justifyContent: "space-evenly",
     alignItems: "center",
   },
@@ -225,7 +266,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     fontSize: 10,
     marginRight: 10,
-    marginVertical: 5,
+    marginVertical: Platform.OS === "ios" ? 5 : 10,
   },
   boxInput: {
     marginHorizontal: 20,
@@ -236,27 +277,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     paddingHorizontal: 10,
   },
-  autocomplete: {
-    alignSelf: "stretch",
-    height: 50,
-    margin: 10,
-    marginTop: 50,
-    backgroundColor: "#FFF",
-    borderColor: "lightblue",
-    borderWidth: 1,
-  },
+
   styFlex1: {
     flex: 1,
   },
   styFlex1List: {
     flex: 1,
-    marginTop: 15,
+    marginTop: Platform.OS === "ios" ? 5 : 30,
   },
   styFlex1Main: {
     flex: 1,
-    backgroundColor: "#003567",
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
   },
   styFlex5: {
     flex: 5,
