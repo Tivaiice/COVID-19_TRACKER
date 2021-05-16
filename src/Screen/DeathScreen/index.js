@@ -67,6 +67,7 @@ const Death = ({ navigation, props, datas }) => {
         <SafeAreaView style={{ flex: 1 }}>
           {checked === "first" ? (
             <FlatList
+              key={datas.ID}
               data={datas.sort((a, b) =>
                 a.TotalDeaths > b.TotalDeaths ? 1 : -1
               )}
@@ -84,6 +85,7 @@ const Death = ({ navigation, props, datas }) => {
           ) : null}
           {checked === "second" ? (
             <FlatList
+              key={datas.ID}
               data={datas.sort((a, b) =>
                 a.TotalDeaths < b.TotalDeaths ? 1 : -1
               )}

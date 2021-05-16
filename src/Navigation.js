@@ -4,6 +4,7 @@ import FirstContainer from "./Container/FirstContainer";
 import ConfirmedContainer from "./Container/ConfirmedContainer";
 import DeathContainer from "./Container/DeathContainer";
 import RecoverdContainer from "./Container/RecoverdContainer";
+import ShowDetailContainer from "./Container/ShowDetailContainer";
 
 const SwitchNav = createSwitchNavigator(
   {
@@ -12,6 +13,7 @@ const SwitchNav = createSwitchNavigator(
     Confirmed: ConfirmedContainer,
     Death: DeathContainer,
     Recoverd: RecoverdContainer,
+    ShowDetail: ShowDetailContainer,
   },
   {
     initialRouteName: "SplashScreen",

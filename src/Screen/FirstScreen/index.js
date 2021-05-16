@@ -17,8 +17,6 @@ const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
 
   const [textSearch, setTextSearch] = useState("");
 
-  const [click, setClick] = useState("");
-
   return (
     <View style={styles.firstContainer}>
       <View style={styles.styFlex1}>
@@ -98,7 +96,7 @@ const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
                       <TouchableOpacity
                         key={item.ID}
                         onPress={() => {
-                          setClick(item);
+                          navigation.navigate("ShowDetail", { detail: item });
                         }}
                       >
                         <View
@@ -108,7 +106,6 @@ const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
                             borderBottomLeftRadius: 20,
                             paddingHorizontal: 20,
                             paddingVertical: 10,
-                            backgroundColor: "#CF81FC",
                           }}
                         >
                           <Text>Country : {item.Country}</Text>
@@ -197,6 +194,10 @@ const styles = StyleSheet.create({
   },
   styFlex1List: {
     flex: 1,
+    backgroundColor: "#f8a2ab",
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
+    marginTop: 15,
   },
   styFlex1Main: {
     flex: 1,

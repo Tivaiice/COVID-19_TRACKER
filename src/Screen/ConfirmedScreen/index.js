@@ -65,6 +65,7 @@ const Confirmed = ({ navigation, props, datas }) => {
         <SafeAreaView style={{ flex: 1 }}>
           {checked === "first" ? (
             <FlatList
+              key={datas.ID}
               data={datas.sort((a, b) =>
                 a.TotalConfirmed > b.TotalConfirmed ? 1 : -1
               )}
@@ -84,6 +85,7 @@ const Confirmed = ({ navigation, props, datas }) => {
           ) : null}
           {checked === "second" ? (
             <FlatList
+              key={datas.ID}
               data={datas.sort((a, b) =>
                 a.TotalConfirmed < b.TotalConfirmed ? 1 : -1
               )}

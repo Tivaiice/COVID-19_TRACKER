@@ -67,6 +67,7 @@ const Recoverd = ({ navigation, props, datas }) => {
         <SafeAreaView style={{ flex: 1 }}>
           {checked === "first" ? (
             <FlatList
+              key={datas.ID}
               data={datas.sort((a, b) =>
                 a.TotalRecovered > b.TotalRecovered ? 1 : -1
               )}
@@ -86,6 +87,7 @@ const Recoverd = ({ navigation, props, datas }) => {
           ) : null}
           {checked === "second" ? (
             <FlatList
+              key={datas.ID}
               data={datas.sort((a, b) =>
                 a.TotalRecovered < b.TotalRecovered ? 1 : -1
               )}
