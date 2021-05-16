@@ -10,7 +10,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import { Searchbar, TextInput } from "react-native-paper";
+import { TextInput } from "react-native-paper";
 
 const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
   const moment = require("moment");
@@ -20,23 +20,58 @@ const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
   return (
     <View style={styles.firstContainer}>
       <View style={styles.styFlex1}>
-        <Text style={styles.stytxt}>COVID-19 TRACKER</Text>
+        <View style={{ backgroundColor: "#003567" }}>
+          <Text style={styles.stytxt}>COVID-19 TRACKER</Text>
+        </View>
         <View style={styles.styFlex1Main}>
           {isLoading ? (
-            <ActivityIndicator size="large" color="#FF0000" />
+            <View style={{ alignItems: "center", marginTop: 30 }}>
+              <ActivityIndicator size="large" color="#FF0000" />
+            </View>
           ) : (
             <View style={styles.totalContainer}>
               <View style={styles.boxTotal}>
-                <Text>TotalConfirmed</Text>
-                <Text>{dataTotal.TotalConfirmed}</Text>
+                <Text style={styles.dataTotal}>TotalConfirmed</Text>
+                <View
+                  style={{
+                    borderRadius: 5,
+                    paddingVertical: 15,
+                    paddingHorizontal: 18,
+                    backgroundColor: "#ed7d75",
+                  }}
+                >
+                  <Text style={styles.dataTotal}>
+                    {dataTotal.TotalConfirmed}
+                  </Text>
+                </View>
               </View>
               <View style={styles.boxTotal}>
-                <Text>TotalRecovered</Text>
-                <Text>{dataTotal.TotalRecovered}</Text>
+                <Text style={styles.dataTotal}>TotalRecovered</Text>
+                <View
+                  style={{
+                    borderRadius: 5,
+                    paddingVertical: 15,
+                    paddingHorizontal: 18,
+                    backgroundColor: "#e04e36",
+                  }}
+                >
+                  <Text style={styles.dataTotal}>
+                    {dataTotal.TotalRecovered}
+                  </Text>
+                </View>
               </View>
               <View style={styles.boxTotal}>
-                <Text>TotalDeaths</Text>
-                <Text>{dataTotal.TotalDeaths}</Text>
+                <Text style={styles.dataTotal}>TotalDeaths</Text>
+                <View
+                  style={{
+                    borderRadius: 5,
+                    paddingVertical: 15,
+                    paddingHorizontal: 18,
+                    backgroundColor: "#98352b",
+                  }}
+                >
+                  <Text style={styles.dataTotal}>{dataTotal.TotalDeaths}</Text>
+                </View>
               </View>
             </View>
           )}
@@ -48,35 +83,43 @@ const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
               {moment(dateUpdate).format("YYYY/MM/DD HH:mm:ss")}
             </Text>
             <View style={styles.btnContainer}>
-              <Button
-                title="TotalConfirmed"
+              <TouchableOpacity
+                style={styles.btnTotal}
                 onPress={() => {
                   navigation.navigate("Confirmed", {
                     datas: datas,
                   });
                 }}
-              />
-              <Button
-                title="TotalRecoverd"
+              >
+                <Text>TotalConfirmed</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.btnTotal}
                 onPress={() => {
                   navigation.navigate("Recoverd", {
                     datas: datas,
                   });
                 }}
-              />
-              <Button
-                title="TotalDeath"
+              >
+                <Text>TotalRecoverd</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.btnTotal}
                 onPress={() => {
                   navigation.navigate("Death", {
                     datas: datas,
                   });
                 }}
-              />
+              >
+                <Text>TotalDeath</Text>
+              </TouchableOpacity>
             </View>
             <View style={styles.boxInput}>
               <TextInput
                 label="Search Country"
                 mode="outlined"
+                selectionColor="#003567"
+                style={{ fontSize: 15, height: 40 }}
                 value={textSearch}
                 onChangeText={(textSearch) => setTextSearch(textSearch)}
               />
@@ -84,8 +127,8 @@ const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
           </View>
           <View style={styles.styFlex1List}>
             <SafeAreaView style={{ margin: 10 }}>
-              <View style={{ marginHorizontal: 20 }}>
-                <ScrollView style={styles.scrollView}>
+              <View style={{ marginHorizontal: 10 }}>
+                <ScrollView>
                   {datas
                     .filter((data) =>
                       data.Country.toLowerCase().includes(
@@ -101,11 +144,10 @@ const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
                       >
                         <View
                           style={{
-                            borderWidth: 0.25,
-                            borderBottomRightRadius: 20,
-                            borderBottomLeftRadius: 20,
+                            marginVertical: 2,
                             paddingHorizontal: 20,
                             paddingVertical: 10,
+                            backgroundColor: "#d7d7d7",
                           }}
                         >
                           <Text>Country : {item.Country}</Text>
@@ -146,19 +188,31 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#FFFFFF",
   },
-  stytxt: { alignSelf: "center", fontSize: 25 },
+  stytxt: {
+    alignSelf: "center",
+    fontSize: 25,
+    color: "#FFFFFF",
+  },
+  dataTotal: {
+    color: "#FFFFFF",
+  },
   totalContainer: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
     marginTop: 10,
+    paddingHorizontal: 10,
+  },
+  btnTotal: {
+    borderWidth: 1,
+    padding: 5,
+    borderColor: "#808080",
+    borderRadius: 5,
   },
   boxTotal: {
     width: 110,
     height: 100,
-    backgroundColor: "#fca4ac",
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
     alignItems: "center",
-    borderRadius: 15,
   },
   boxList: {
     borderWidth: 1,
@@ -171,14 +225,16 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     fontSize: 10,
     marginRight: 10,
+    marginVertical: 5,
   },
   boxInput: {
-    height: 50,
     marginHorizontal: 20,
+    marginVertical: 10,
   },
   btnContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
+    paddingHorizontal: 10,
   },
   autocomplete: {
     alignSelf: "stretch",
@@ -194,16 +250,13 @@ const styles = StyleSheet.create({
   },
   styFlex1List: {
     flex: 1,
-    backgroundColor: "#f8a2ab",
-    borderTopRightRadius: 20,
-    borderTopLeftRadius: 20,
     marginTop: 15,
   },
   styFlex1Main: {
     flex: 1,
-    backgroundColor: "#fca4ac",
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    backgroundColor: "#003567",
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
   styFlex5: {
     flex: 5,
@@ -211,7 +264,6 @@ const styles = StyleSheet.create({
   styFlex02: {
     flex: 0.2,
   },
-  scrollView: {},
 });
 
 export default First;

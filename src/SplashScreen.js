@@ -19,7 +19,9 @@ class Splash extends React.Component {
           style={styles.pic}
           source={require("../src/images/new-normality.png")}
         />
-        <Text style={{ marginTop: 10 }}>COVID-19 TRACKER</Text>
+        <Text style={{ marginTop: 10, color: "#FFFFFF" }}>
+          COVID-19 TRACKER
+        </Text>
       </View>
     );
   }
@@ -30,9 +32,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#003567",
   },
-  pic: { width: 100, height: 100 },
+  pic: { width: 150, height: 150 },
 });
 
 export default Splash;
