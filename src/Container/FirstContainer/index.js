@@ -9,7 +9,6 @@ class FirstContainer extends React.Component {
     this.state = {
       datas: [],
       dataTotal: [],
-      suggestions: [],
       dateUpdate: "",
       isLoading: true,
       click: 0,

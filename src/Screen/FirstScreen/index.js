@@ -7,17 +7,23 @@ import {
   ActivityIndicator,
   SafeAreaView,
   FlatList,
+  ScrollView,
+  TouchableOpacity,
 } from "react-native";
-
-// array.filter(name => name.includes(state)).map(value =>
+import { Searchbar, TextInput } from "react-native-paper";
 
 const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
   const moment = require("moment");
+
+  const [textSearch, setTextSearch] = useState("");
+
+  const [click, setClick] = useState("");
+
   return (
     <View style={styles.firstContainer}>
       <View style={styles.styFlex1}>
         <Text style={styles.stytxt}>COVID-19 TRACKER</Text>
-        <View style={styles.styFlex1}>
+        <View style={styles.styFlex1Main}>
           {isLoading ? (
             <ActivityIndicator size="large" color="#FF0000" />
           ) : (
@@ -43,9 +49,6 @@ const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
               Infomation update on :
               {moment(dateUpdate).format("YYYY/MM/DD HH:mm:ss")}
             </Text>
-            <View style={styles.boxInput}>
-              <View style={{ marginLeft: 10, marginVertical: 8 }}></View>
-            </View>
             <View style={styles.btnContainer}>
               <Button
                 title="TotalConfirmed"
@@ -72,11 +75,65 @@ const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
                 }}
               />
             </View>
+            <View style={styles.boxInput}>
+              <TextInput
+                label="Search Country"
+                mode="outlined"
+                value={textSearch}
+                onChangeText={(textSearch) => setTextSearch(textSearch)}
+              />
+            </View>
           </View>
-          <View style={styles.styFlex1}>
+          <View style={styles.styFlex1List}>
             <SafeAreaView style={{ margin: 10 }}>
-              <View>
-                <Text>awds</Text>
+              <View style={{ marginHorizontal: 20 }}>
+                <ScrollView style={styles.scrollView}>
+                  {datas
+                    .filter((data) =>
+                      data.Country.toLowerCase().includes(
+                        textSearch.toLowerCase()
+                      )
+                    )
+                    .map((item) => (
+                      <TouchableOpacity
+                        key={item.ID}
+                        onPress={() => {
+                          setClick(item);
+                        }}
+                      >
+                        <View
+                          style={{
+                            borderWidth: 0.25,
+                            borderBottomRightRadius: 20,
+                            borderBottomLeftRadius: 20,
+                            paddingHorizontal: 20,
+                            paddingVertical: 10,
+                            backgroundColor: "#CF81FC",
+                          }}
+                        >
+                          <Text>Country : {item.Country}</Text>
+                          <Text>
+                            NewConfirmed :
+                            {item.NewConfirmed == 0
+                              ? "unreported"
+                              : item.NewConfirmed}
+                          </Text>
+                          <Text>
+                            NewDeaths :
+                            {item.NewDeaths == 0
+                              ? "unreported"
+                              : item.NewDeaths}
+                          </Text>
+                          <Text>
+                            NewRecovered :{" "}
+                            {item.NewRecovered == 0
+                              ? "unreported"
+                              : item.NewRecovered}
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    ))}
+                </ScrollView>
               </View>
             </SafeAreaView>
           </View>
@@ -119,9 +176,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   boxInput: {
-    height: 40,
-    borderWidth: 1,
-    borderRadius: 15,
+    height: 50,
     marginHorizontal: 20,
   },
   btnContainer: {
@@ -140,12 +195,22 @@ const styles = StyleSheet.create({
   styFlex1: {
     flex: 1,
   },
+  styFlex1List: {
+    flex: 1,
+  },
+  styFlex1Main: {
+    flex: 1,
+    backgroundColor: "#fca4ac",
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
   styFlex5: {
     flex: 5,
   },
   styFlex02: {
     flex: 0.2,
   },
+  scrollView: {},
 });
 
 export default First;
