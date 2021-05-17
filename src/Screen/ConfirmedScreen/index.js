@@ -17,7 +17,7 @@ const Confirmed = ({ navigation, datas }) => {
   return (
     <View style={styles.bgContainer}>
       <ImageBackground
-        source={require("../../images/head2.png")}
+        source={require("../../images/head22.png")}
         style={styles.imageHead}
       >
         <View style={styles.styFlex1}>
