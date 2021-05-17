@@ -15,7 +15,7 @@
   <img width="400" alt="Screen Shot 2564-05-17 at 17 38 15" src="https://user-images.githubusercontent.com/32460672/118478646-54957800-b73a-11eb-913b-64b5bd44fffb.png">
   </p>
   
-<h2>Loading</h2>
+<h2>Home</h2>
   <p align="center">
   <img width="400" alt="Screen0" src="https://user-images.githubusercontent.com/32460672/118478766-755dcd80-b73a-11eb-875a-9837dafc6ac5.png">
   </p>
