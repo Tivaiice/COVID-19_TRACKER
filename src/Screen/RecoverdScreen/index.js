@@ -75,12 +75,12 @@ const Recoverd = ({ navigation, props, datas }) => {
               keyExtractor={({ id }, index) => id}
               renderItem={({ item, id }) => (
                 <View key={id} style={styles.boxList}>
-                  <View style={{ paddingLeft: 15, paddingVertical: 10 }}>
-                    <Text style={{ fontWeight: "bold" }}>Country</Text>
-                    <Text style={{ fontWeight: "bold" }}>TotalRecovered </Text>
+                  <View style={styles.viewListLeft}>
+                    <Text style={styles.txtBold}>Country</Text>
+                    <Text style={styles.txtBold}>TotalRecovered </Text>
                   </View>
-                  <View style={{ paddingLeft: 5, paddingVertical: 10 }}>
-                    <Text style={{ fontSize: 13 }}>{item.Country}</Text>
+                  <View style={styles.viewListRight}>
+                    <Text style={styles.font13}>{item.Country}</Text>
                     <Text>
                       {item.TotalRecovered == 0
                         ? "unreported"
@@ -99,12 +99,12 @@ const Recoverd = ({ navigation, props, datas }) => {
               keyExtractor={({ id }, index) => id}
               renderItem={({ item, id }) => (
                 <View key={id} style={styles.boxList}>
-                  <View style={{ paddingLeft: 15, paddingVertical: 10 }}>
-                    <Text style={{ fontWeight: "bold" }}>Country</Text>
-                    <Text style={{ fontWeight: "bold" }}>TotalRecovered </Text>
+                  <View style={styles.viewListLeft}>
+                    <Text style={styles.txtBold}>Country</Text>
+                    <Text style={styles.txtBold}>TotalRecovered </Text>
                   </View>
-                  <View style={{ paddingLeft: 5, paddingVertical: 10 }}>
-                    <Text style={{ fontSize: 13 }}>{item.Country}</Text>
+                  <View style={styles.viewListRight}>
+                    <Text style={styles.font13}>{item.Country}</Text>
                     <Text>
                       {item.TotalRecovered == 0
                         ? "unreported"
