@@ -22,7 +22,7 @@ const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
     <View style={styles.firstContainer}>
       <View style={styles.styFlex1}>
         <ImageBackground
-          source={require("../../images/head2.png")}
+          source={require("../../images/head1.png")}
           style={styles.imageHead}
         >
           <View style={styles.DirecRow}>

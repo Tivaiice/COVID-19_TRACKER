@@ -54,49 +54,19 @@ const Recoverd = ({ navigation, props, datas }) => {
               status={checked === "first" ? "checked" : "unchecked"}
               onPress={() => setChecked("first")}
             />
-            <Image
-              source={require("../../images/up.png")}
-              style={styles.styUp}
-            />
-            <Text
-              style={{ fontSize: 13, paddingHorizontal: 5, color: "#d61d1d" }}
-            >
-              Highest
-            </Text>
+            <Text style={styles.txtHigh}>Highest</Text>
           </View>
-          <View
-            style={{
-              flexDirection: "row",
-              borderWidth: 1,
-              justifyContent: "center",
-              alignItems: "center",
-              marginHorizontal: 5,
-              borderColor: "#73dc32",
-            }}
-          >
+          <View style={styles.viewGreen}>
             <RadioButton
               value="second"
               color="#73dc32"
               status={checked === "second" ? "checked" : "unchecked"}
               onPress={() => setChecked("second")}
             />
-            <Image
-              source={require("../../images/down.png")}
-              style={{
-                width: 10,
-                height: 20,
-                marginVertical: 3,
-                marginRight: 5,
-              }}
-            />
-            <Text
-              style={{ fontSize: 13, paddingHorizontal: 5, color: "#73dc32" }}
-            >
-              Lowest
-            </Text>
+            <Text style={styles.txtLow}>Lowest</Text>
           </View>
         </View>
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={styles.styFlex1}>
           {checked === "first" ? (
             <FlatList
               data={datas.sort((a, b) =>
