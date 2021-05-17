@@ -71,7 +71,7 @@ const Confirmed = ({ navigation, datas }) => {
           {checked === "first" ? (
             <FlatList
               data={datas.sort((a, b) =>
-                a.TotalConfirmed > b.TotalConfirmed ? 1 : -1
+                a.TotalConfirmed < b.TotalConfirmed ? 1 : -1
               )}
               keyExtractor={({ id }, index) => id}
               renderItem={({ item, id }) => (
@@ -95,7 +95,7 @@ const Confirmed = ({ navigation, datas }) => {
           {checked === "second" ? (
             <FlatList
               data={datas.sort((a, b) =>
-                a.TotalConfirmed < b.TotalConfirmed ? 1 : -1
+                a.TotalConfirmed > b.TotalConfirmed ? 1 : -1
               )}
               keyExtractor={({ id }, index) => id}
               renderItem={({ item, id }) => (

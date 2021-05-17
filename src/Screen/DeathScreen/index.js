@@ -70,7 +70,7 @@ const Death = ({ navigation, props, datas }) => {
           {checked === "first" ? (
             <FlatList
               data={datas.sort((a, b) =>
-                a.TotalDeaths > b.TotalDeaths ? 1 : -1
+                a.TotalDeaths < b.TotalDeaths ? 1 : -1
               )}
               keyExtractor={({ id }, index) => id}
               renderItem={({ item, id }) => (
@@ -92,7 +92,7 @@ const Death = ({ navigation, props, datas }) => {
           {checked === "second" ? (
             <FlatList
               data={datas.sort((a, b) =>
-                a.TotalDeaths < b.TotalDeaths ? 1 : -1
+                a.TotalDeaths > b.TotalDeaths ? 1 : -1
               )}
               keyExtractor={({ id }, index) => id}
               renderItem={({ item, id }) => (

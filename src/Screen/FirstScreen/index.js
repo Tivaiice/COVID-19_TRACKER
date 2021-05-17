@@ -22,7 +22,7 @@ const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
     <View style={styles.firstContainer}>
       <View style={styles.styFlex1}>
         <ImageBackground
-          source={require("../../images/head1.png")}
+          source={require("../../images/head14.png")}
           style={styles.imageHead}
         >
           <View style={styles.DirecRow}>
@@ -146,26 +146,26 @@ const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
                         <View style={styles.viewList}>
                           <View style={{ flex: 1 }}>
                             <Text style={styles.txtBold}>Country</Text>
-                            <Text style={styles.txtBold}>NewConfirmed</Text>
-                            <Text style={styles.txtBold}>NewDeaths</Text>
-                            <Text style={styles.txtBold}>NewRecovered </Text>
+                            <Text style={styles.txtBold}>TotalConfirmed</Text>
+                            <Text style={styles.txtBold}>TotalRecovered </Text>
+                            <Text style={styles.txtBold}>TotalDeaths</Text>
                           </View>
                           <View style={{ flex: 1 }}>
                             <Text style={{ fontSize: 12 }}>{item.Country}</Text>
                             <Text>
-                              {item.NewConfirmed == 0
+                              {item.TotalConfirmed == 0
                                 ? "unreported"
-                                : item.NewConfirmed}
+                                : item.TotalConfirmed}
                             </Text>
                             <Text>
-                              {item.NewDeaths == 0
+                              {item.TotalRecovered == 0
                                 ? "unreported"
-                                : item.NewDeaths}
+                                : item.TotalRecovered}
                             </Text>
                             <Text>
-                              {item.NewRecovered == 0
+                              {item.TotalDeaths == 0
                                 ? "unreported"
-                                : item.NewRecovered}
+                                : item.TotalDeaths}
                             </Text>
                           </View>
                         </View>
@@ -191,7 +191,6 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 130,
     resizeMode: "cover",
-    justifyContent: "center",
   },
   stytxt: {
     fontSize: 25,

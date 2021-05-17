@@ -70,7 +70,7 @@ const Recoverd = ({ navigation, props, datas }) => {
           {checked === "first" ? (
             <FlatList
               data={datas.sort((a, b) =>
-                a.TotalRecovered > b.TotalRecovered ? 1 : -1
+                a.TotalRecovered < b.TotalRecovered ? 1 : -1
               )}
               keyExtractor={({ id }, index) => id}
               renderItem={({ item, id }) => (
@@ -94,7 +94,7 @@ const Recoverd = ({ navigation, props, datas }) => {
           {checked === "second" ? (
             <FlatList
               data={datas.sort((a, b) =>
-                a.TotalRecovered < b.TotalRecovered ? 1 : -1
+                a.TotalRecovered > b.TotalRecovered ? 1 : -1
               )}
               keyExtractor={({ id }, index) => id}
               renderItem={({ item, id }) => (
