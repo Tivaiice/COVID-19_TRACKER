@@ -55,10 +55,6 @@ const Confirmed = ({ navigation, datas }) => {
               status={checked === "first" ? "checked" : "unchecked"}
               onPress={() => setChecked("first")}
             />
-            <Image
-              source={require("../../images/up.png")}
-              style={styles.styUp}
-            />
             <Text style={styles.txtHigh}>Highest</Text>
           </View>
           <View style={styles.viewGreen}>
@@ -67,10 +63,6 @@ const Confirmed = ({ navigation, datas }) => {
               color="#73dc32"
               status={checked === "second" ? "checked" : "unchecked"}
               onPress={() => setChecked("second")}
-            />
-            <Image
-              source={require("../../images/down.png")}
-              style={styles.styDown}
             />
             <Text style={styles.txtLow}>Lowest</Text>
           </View>
@@ -198,10 +190,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     borderColor: "#d61d1d",
   },
-  styUp: {
-    width: 10,
-    height: 20,
-  },
   txtHigh: {
     fontSize: 13,
     paddingHorizontal: 5,
@@ -214,12 +202,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginHorizontal: 5,
     borderColor: "#73dc32",
-  },
-  styDown: {
-    width: 10,
-    height: 20,
-    marginVertical: 3,
-    marginRight: 5,
   },
   txtLow: {
     fontSize: 13,

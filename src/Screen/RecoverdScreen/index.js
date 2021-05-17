@@ -19,47 +19,26 @@ const Recoverd = ({ navigation, props, datas }) => {
         source={require("../../images/head2.png")}
         style={styles.imageHead}
       >
-        <View style={{ flex: 1 }}>
+        <View style={styles.styFlex1}>
           <View style={{ flexDirection: "row" }}>
-            <View style={{ flex: 1, height: 55 }}>
+            <View style={styles.viewNavBar}>
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate("First");
                 }}
               >
                 <Image
-                  style={{
-                    width: 25,
-                    height: 25,
-                    marginVertical: 20,
-                    marginLeft: 10,
-                  }}
+                  style={styles.styImgBack}
                   source={require("../../images/back.png")}
                 />
               </TouchableOpacity>
             </View>
-            <View
-              style={{
-                flex: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: "bold",
-                  color: "#FFFFFF",
-                }}
-              >
-                TotalRecovered
-              </Text>
+            <View style={styles.viewTxtNavBar}>
+              <Text style={styles.txtNavBar}>TotalRecovered</Text>
             </View>
-            <View
-              style={{ flex: 1, height: 55, marginTop: 10, marginRight: 10 }}
-            >
+            <View style={styles.viewImgNavBar}>
               <Image
-                style={{ width: 40, height: 40, marginVertical: 2 }}
+                style={styles.styImgCovid}
                 source={require("../../images/covidd199.png")}
               />
             </View>
@@ -67,25 +46,8 @@ const Recoverd = ({ navigation, props, datas }) => {
         </View>
       </ImageBackground>
       <View style={{ flex: 12 }}>
-        <View
-          style={{
-            height: 35,
-            flexDirection: "row",
-            justifyContent: "flex-end",
-            marginTop: Platform.OS === "ios" ? 20 : 25,
-            marginBottom: 10,
-          }}
-        >
-          <View
-            style={{
-              flexDirection: "row",
-              borderWidth: 1,
-              justifyContent: "center",
-              alignItems: "center",
-              marginHorizontal: 5,
-              borderColor: "#d61d1d",
-            }}
-          >
+        <View style={styles.viewBtn}>
+          <View style={styles.viewRed}>
             <RadioButton
               value="first"
               color="#d61d1d"
@@ -94,10 +56,7 @@ const Recoverd = ({ navigation, props, datas }) => {
             />
             <Image
               source={require("../../images/up.png")}
-              style={{
-                width: 10,
-                height: 20,
-              }}
+              style={styles.styUp}
             />
             <Text
               style={{ fontSize: 13, paddingHorizontal: 5, color: "#d61d1d" }}
@@ -210,6 +169,97 @@ const styles = StyleSheet.create({
     height: 70,
     resizeMode: "cover",
     justifyContent: "center",
+  },
+  styFlex1: {
+    flex: 1,
+  },
+  viewNavBar: {
+    flex: 1,
+    height: 55,
+  },
+  styImgBack: {
+    width: 25,
+    height: 25,
+    marginVertical: 20,
+    marginLeft: 10,
+  },
+  viewTxtNavBar: {
+    flex: 5,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  txtNavBar: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#FFFFFF",
+  },
+  viewImgNavBar: {
+    flex: 1,
+    height: 55,
+    marginTop: 10,
+    marginRight: 10,
+  },
+  styImgCovid: {
+    width: 40,
+    height: 40,
+    marginVertical: 2,
+  },
+  viewBtn: {
+    height: 35,
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    marginTop: Platform.OS === "ios" ? 20 : 25,
+    marginBottom: 10,
+  },
+  viewRed: {
+    flexDirection: "row",
+    borderWidth: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 5,
+    borderColor: "#d61d1d",
+  },
+  styUp: {
+    width: 10,
+    height: 20,
+  },
+  txtHigh: {
+    fontSize: 13,
+    paddingHorizontal: 5,
+    color: "#d61d1d",
+  },
+  viewGreen: {
+    flexDirection: "row",
+    borderWidth: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 5,
+    borderColor: "#73dc32",
+  },
+  styDown: {
+    width: 10,
+    height: 20,
+    marginVertical: 3,
+    marginRight: 5,
+  },
+  txtLow: {
+    fontSize: 13,
+    paddingHorizontal: 5,
+    color: "#73dc32",
+  },
+  txtBold: {
+    fontWeight: "bold",
+  },
+  viewListLeft: {
+    paddingLeft: 15,
+    paddingVertical: 10,
+  },
+  viewListRight: {
+    paddingLeft: 5,
+    paddingVertical: 10,
+  },
+  font13: {
+    fontSize: 13,
   },
 });
 
