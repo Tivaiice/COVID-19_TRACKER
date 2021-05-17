@@ -67,59 +67,117 @@ const Death = ({ navigation, props, datas }) => {
         </View>
       </ImageBackground>
       <View style={{ flex: 12 }}>
-        <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
-          <View style={{ flexDirection: "row" }}>
+        <View
+          style={{
+            height: 35,
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            marginTop: Platform.OS === "ios" ? 20 : 25,
+            marginBottom: 10,
+          }}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              borderWidth: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              marginHorizontal: 5,
+              borderColor: "#d61d1d",
+            }}
+          >
             <RadioButton
               value="first"
-              color="#FFE800"
+              color="#d61d1d"
               status={checked === "first" ? "checked" : "unchecked"}
               onPress={() => setChecked("first")}
             />
-            <Text style={{ fontSize: 15, marginTop: 8 }}>A-Z</Text>
+            <Image
+              source={require("../../images/up.png")}
+              style={{
+                width: 10,
+                height: 20,
+              }}
+            />
+            <Text
+              style={{ fontSize: 13, paddingHorizontal: 5, color: "#d61d1d" }}
+            >
+              Highest
+            </Text>
           </View>
-          <View style={{ flexDirection: "row" }}>
+          <View
+            style={{
+              flexDirection: "row",
+              borderWidth: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              marginHorizontal: 5,
+              borderColor: "#73dc32",
+            }}
+          >
             <RadioButton
               value="second"
-              color="#FFE800"
+              color="#73dc32"
               status={checked === "second" ? "checked" : "unchecked"}
               onPress={() => setChecked("second")}
             />
-            <Text style={{ fontSize: 15, marginTop: 8 }}>Z-A</Text>
+            <Image
+              source={require("../../images/down.png")}
+              style={{
+                width: 10,
+                height: 20,
+                marginVertical: 3,
+                marginRight: 5,
+              }}
+            />
+            <Text
+              style={{ fontSize: 13, paddingHorizontal: 5, color: "#73dc32" }}
+            >
+              Lowest
+            </Text>
           </View>
         </View>
         <SafeAreaView style={{ flex: 1 }}>
           {checked === "first" ? (
             <FlatList
-              key={datas.ID}
               data={datas.sort((a, b) =>
                 a.TotalDeaths > b.TotalDeaths ? 1 : -1
               )}
               keyExtractor={({ id }, index) => id}
               renderItem={({ item, id }) => (
                 <View key={id} style={styles.boxList}>
-                  <Text>Country : {item.Country}</Text>
-                  <Text>
-                    TotalDeaths :
-                    {item.TotalDeaths == 0 ? "unreported" : item.TotalDeaths}
-                  </Text>
+                  <View style={{ paddingLeft: 15, paddingVertical: 10 }}>
+                    <Text style={{ fontWeight: "bold" }}>Country</Text>
+                    <Text style={{ fontWeight: "bold" }}>TotalDeaths </Text>
+                  </View>
+                  <View style={{ paddingLeft: 5, paddingVertical: 10 }}>
+                    <Text style={{ fontSize: 13 }}>{item.Country}</Text>
+                    <Text>
+                      {item.TotalDeaths == 0 ? "unreported" : item.TotalDeaths}
+                    </Text>
+                  </View>
                 </View>
               )}
             />
           ) : null}
           {checked === "second" ? (
             <FlatList
-              key={datas.ID}
               data={datas.sort((a, b) =>
                 a.TotalDeaths < b.TotalDeaths ? 1 : -1
               )}
               keyExtractor={({ id }, index) => id}
               renderItem={({ item, id }) => (
                 <View key={id} style={styles.boxList}>
-                  <Text>Country : {item.Country}</Text>
-                  <Text>
-                    TotalDeaths :
-                    {item.TotalDeaths == 0 ? "unreported" : item.TotalDeaths}
-                  </Text>
+                  <View style={{ paddingLeft: 15, paddingVertical: 10 }}>
+                    <Text style={{ fontWeight: "bold" }}>Country</Text>
+                    <Text style={{ fontWeight: "bold" }}>TotalDeaths </Text>
+                  </View>
+                  <View style={{ paddingLeft: 5, paddingVertical: 10 }}>
+                    <Text style={{ fontSize: 13 }}>{item.Country}</Text>
+                    <Text>
+                      {item.TotalDeaths == 0 ? "unreported" : item.TotalDeaths}
+                    </Text>
+                  </View>
                 </View>
               )}
             />
@@ -137,11 +195,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   boxList: {
-    borderWidth: 1,
-    borderColor: "#FFE800",
-    borderRadius: 5,
-    margin: 2,
-    padding: 2,
+    backgroundColor: "#d7d7d7",
+    borderBottomWidth: 0,
+    marginHorizontal: 20,
+    flexDirection: "row",
+    marginVertical: 2,
   },
   imageHead: {
     flex: 1,

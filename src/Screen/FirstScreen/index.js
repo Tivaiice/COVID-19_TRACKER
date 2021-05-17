@@ -25,34 +25,24 @@ const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
           source={require("../../images/head2.png")}
           style={styles.imageHead}
         >
-          <View style={{ flexDirection: "row" }}>
-            <View
-              style={{
-                flex: 1,
-                alignItems: "flex-end",
-              }}
-            >
+          <View style={styles.DirecRow}>
+            <View style={styles.flexAlstart}>
               <Image
-                style={{ width: 40, height: 40 }}
+                style={styles.styImg}
                 source={require("../../images/covidd199.png")}
               />
             </View>
-            <View style={{ flex: 4, alignItems: "center" }}>
+            <View style={styles.viewStytxt}>
               <Text style={styles.stytxt}>COVID-19 TRACKER</Text>
             </View>
-            <View
-              style={{
-                flex: 1,
-                alignItems: "flex-start",
-              }}
-            >
+            <View style={styles.flexAlend}>
               <Image
-                style={{ width: 40, height: 40 }}
+                style={styles.styImg}
                 source={require("../../images/covidd199.png")}
               />
             </View>
           </View>
-          <View style={styles.styFlex1Main}>
+          <View style={styles.styFlex1}>
             {isLoading ? (
               <View style={{ alignItems: "center", marginTop: 30 }}>
                 <ActivityIndicator size="large" color="#FF0000" />
@@ -61,14 +51,7 @@ const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
               <View style={styles.totalContainer}>
                 <View style={styles.boxTotal}>
                   <Text style={styles.dataTotal}>TotalConfirmed</Text>
-                  <View
-                    style={{
-                      borderRadius: 5,
-                      paddingVertical: 15,
-                      paddingHorizontal: 18,
-                      backgroundColor: "#ed7d75",
-                    }}
-                  >
+                  <View style={styles.viewDataTotal1}>
                     <Text style={styles.dataTotal2}>
                       {dataTotal.TotalConfirmed}
                     </Text>
@@ -76,14 +59,7 @@ const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
                 </View>
                 <View style={styles.boxTotal}>
                   <Text style={styles.dataTotal}>TotalRecovered</Text>
-                  <View
-                    style={{
-                      borderRadius: 5,
-                      paddingVertical: 15,
-                      paddingHorizontal: 18,
-                      backgroundColor: "#e04e36",
-                    }}
-                  >
+                  <View style={styles.viewDataTotal2}>
                     <Text style={styles.dataTotal2}>
                       {dataTotal.TotalRecovered}
                     </Text>
@@ -91,14 +67,7 @@ const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
                 </View>
                 <View style={styles.boxTotal}>
                   <Text style={styles.dataTotal}>TotalDeaths</Text>
-                  <View
-                    style={{
-                      borderRadius: 5,
-                      paddingVertical: 15,
-                      paddingHorizontal: 18,
-                      backgroundColor: "#98352b",
-                    }}
-                  >
+                  <View style={styles.viewDataTotal3}>
                     <Text style={styles.dataTotal2}>
                       {dataTotal.TotalDeaths}
                     </Text>
@@ -174,33 +143,31 @@ const First = ({ datas, dataTotal, dateUpdate, isLoading, navigation }) => {
                           navigation.navigate("ShowDetail", { detail: item });
                         }}
                       >
-                        <View
-                          style={{
-                            marginVertical: 2,
-                            paddingHorizontal: 20,
-                            paddingVertical: 10,
-                            backgroundColor: "#d7d7d7",
-                          }}
-                        >
-                          <Text>Country : {item.Country}</Text>
-                          <Text>
-                            NewConfirmed :
-                            {item.NewConfirmed == 0
-                              ? "unreported"
-                              : item.NewConfirmed}
-                          </Text>
-                          <Text>
-                            NewDeaths :
-                            {item.NewDeaths == 0
-                              ? "unreported"
-                              : item.NewDeaths}
-                          </Text>
-                          <Text>
-                            NewRecovered :{" "}
-                            {item.NewRecovered == 0
-                              ? "unreported"
-                              : item.NewRecovered}
-                          </Text>
+                        <View style={styles.viewList}>
+                          <View style={{ flex: 1 }}>
+                            <Text style={styles.txtBold}>Country</Text>
+                            <Text style={styles.txtBold}>NewConfirmed</Text>
+                            <Text style={styles.txtBold}>NewDeaths</Text>
+                            <Text style={styles.txtBold}>NewRecovered </Text>
+                          </View>
+                          <View style={{ flex: 1 }}>
+                            <Text style={{ fontSize: 12 }}>{item.Country}</Text>
+                            <Text>
+                              {item.NewConfirmed == 0
+                                ? "unreported"
+                                : item.NewConfirmed}
+                            </Text>
+                            <Text>
+                              {item.NewDeaths == 0
+                                ? "unreported"
+                                : item.NewDeaths}
+                            </Text>
+                            <Text>
+                              {item.NewRecovered == 0
+                                ? "unreported"
+                                : item.NewRecovered}
+                            </Text>
+                          </View>
                         </View>
                       </TouchableOpacity>
                     ))}
@@ -232,10 +199,43 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     marginVertical: 5,
   },
+  viewStytxt: {
+    flex: 4,
+    alignItems: "center",
+  },
+  DirecRow: {
+    flexDirection: "row",
+  },
+  flexAlstart: {
+    flex: 1,
+    alignItems: "flex-end",
+  },
+  flexAlend: {
+    flex: 1,
+    alignItems: "flex-start",
+  },
   dataTotal: {
     color: "#FFFFFF",
     marginTop: 5,
     marginBottom: 10,
+  },
+  viewDataTotal1: {
+    borderRadius: 5,
+    paddingVertical: 15,
+    paddingHorizontal: 18,
+    backgroundColor: "#ed7d75",
+  },
+  viewDataTotal2: {
+    borderRadius: 5,
+    paddingVertical: 15,
+    paddingHorizontal: 18,
+    backgroundColor: "#e04e36",
+  },
+  viewDataTotal3: {
+    borderRadius: 5,
+    paddingVertical: 15,
+    paddingHorizontal: 18,
+    backgroundColor: "#98352b",
   },
   dataTotal2: {
     color: "#FFFFFF",
@@ -244,6 +244,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     paddingHorizontal: 10,
+  },
+  styImg: {
+    width: 40,
+    height: 40,
+  },
+  viewList: {
+    marginVertical: 2,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    backgroundColor: "#d7d7d7",
+    flexDirection: "row",
+  },
+  txtBold: {
+    fontWeight: "bold",
   },
   btnTotal: {
     borderWidth: 1,
@@ -277,16 +291,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     paddingHorizontal: 10,
   },
-
   styFlex1: {
     flex: 1,
   },
   styFlex1List: {
     flex: 1,
     marginTop: Platform.OS === "ios" ? 5 : 30,
-  },
-  styFlex1Main: {
-    flex: 1,
   },
   styFlex5: {
     flex: 5,
